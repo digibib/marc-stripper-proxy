@@ -44,6 +44,7 @@ func strip(resp *http.Response) error {
 	var res []*marc.Record
 	for _, r := range recs {
 		newRec := marc.NewRecord()
+		newRec.Leader = r.Leader
 		for _, df := range r.DataFields {
 			f := marc.NewDField(df.Tag)
 			f.Ind1 = df.Ind1
