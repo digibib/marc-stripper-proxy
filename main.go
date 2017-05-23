@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"strconv"
 	"strings"
 
 	"github.com/boutros/marc"
@@ -64,6 +65,7 @@ func strip(resp *http.Response) error {
 	b.WriteString(xmlFooter)
 	resp.Body = ioutil.NopCloser(&b)
 	resp.ContentLength = int64(len(b.Bytes()))
+	resp.Header.Set("Content-Length", strconv.Itoa(len(b.Bytes())))
 	return nil
 }
 
